@@ -1,0 +1,130 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/tmankita/Projects/Email_app/UnitTest/UnitTest.csproj": {}
+  },
+  "projects": {
+    "/Users/tmankita/Projects/Email_app/Email_app/Email_app.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/tmankita/Projects/Email_app/Email_app/Email_app.csproj",
+        "projectName": "Email_app",
+        "projectPath": "/Users/tmankita/Projects/Email_app/Email_app/Email_app.csproj",
+        "packagesPath": "/Users/tmankita/.nuget/packages/",
+        "outputPath": "/Users/tmankita/Projects/Email_app/Email_app/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/tmankita/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.403/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/tmankita/Projects/Email_app/UnitTest/UnitTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/tmankita/Projects/Email_app/UnitTest/UnitTest.csproj",
+        "projectName": "UnitTest",
+        "projectPath": "/Users/tmankita/Projects/Email_app/UnitTest/UnitTest.csproj",
+        "packagesPath": "/Users/tmankita/.nuget/packages/",
+        "outputPath": "/Users/tmankita/Projects/Email_app/UnitTest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/tmankita/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Users/tmankita/Projects/Email_app/Email_app/Email_app.csproj": {
+                "projectPath": "/Users/tmankita/Projects/Email_app/Email_app/Email_app.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.5.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.403/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{C4157604-2132-47B1-8987-0651AA642C0D}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Email_app/Startup.cs">
+    <Files>
+      <File FileName="UnitTest/UnitTest1.cs" Line="14" Column="53" />
+      <File FileName="Email_app/ApplicationManager.cs" Line="144" Column="24" />
+      <File FileName="Email_app/DadJokeClasses/DadJokeGenerator.cs" Line="44" Column="24" />
+      <File FileName="Email_app/Startup.cs" Line="26" Column="31" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Email_app" expanded="True">
+            <Node name="Email_app" expanded="True">
+              <Node name="DadJokeClasses" expanded="True" />
+              <Node name="EmailClasses" expanded="True" />
+              <Node name="Startup.cs" selected="True" />
+            </Node>
+            <Node name="UnitTest" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Email_app" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Email__app PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

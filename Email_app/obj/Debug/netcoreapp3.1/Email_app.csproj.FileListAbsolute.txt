@@ -1,0 +1,12 @@
+/Users/tmankita/Projects/Email_app/Email_app/bin/Debug/netcoreapp3.1/Email_app.deps.json
+/Users/tmankita/Projects/Email_app/Email_app/bin/Debug/netcoreapp3.1/Email_app.runtimeconfig.json
+/Users/tmankita/Projects/Email_app/Email_app/bin/Debug/netcoreapp3.1/Email_app.runtimeconfig.dev.json
+/Users/tmankita/Projects/Email_app/Email_app/bin/Debug/netcoreapp3.1/Email_app.dll
+/Users/tmankita/Projects/Email_app/Email_app/bin/Debug/netcoreapp3.1/Email_app.pdb
+/Users/tmankita/Projects/Email_app/Email_app/obj/Debug/netcoreapp3.1/Email_app.csprojAssemblyReference.cache
+/Users/tmankita/Projects/Email_app/Email_app/obj/Debug/netcoreapp3.1/Email_app.AssemblyInfoInputs.cache
+/Users/tmankita/Projects/Email_app/Email_app/obj/Debug/netcoreapp3.1/Email_app.AssemblyInfo.cs
+/Users/tmankita/Projects/Email_app/Email_app/obj/Debug/netcoreapp3.1/Email_app.csproj.CoreCompileInputs.cache
+/Users/tmankita/Projects/Email_app/Email_app/obj/Debug/netcoreapp3.1/Email_app.dll
+/Users/tmankita/Projects/Email_app/Email_app/obj/Debug/netcoreapp3.1/Email_app.pdb
+/Users/tmankita/Projects/Email_app/Email_app/obj/Debug/netcoreapp3.1/Email_app.genruntimeconfig.cache
