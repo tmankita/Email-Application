@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net.Mail;
 using System.Threading;
@@ -14,6 +15,7 @@ namespace Email_app
         /// - waiting_queue -  is a queue that stores all the email addresses that already got the jokes we have in the joke factory.
         /// - clients -  is a hash table that store all the  costumers (email addresses that asked for joke)
         /// </summary>
+        private ManualResetEvent main_event;
         private HashSet<string> clients;
         private Queue<string> waiting_queue;
         private List<ManualResetEvent> events;
@@ -25,10 +27,16 @@ namespace Email_app
         private long current_waiting_count;
         private long jokes_count;
         private long sends_count;
-        private string email_for_testing;
+        private Startup service;
+        private DadJokeGenerator jokesFactory;
+        private MailgunEmailSender sender;
+        private ConcurrentQueue<string> input_emails;
 
-        public ApplicationManager()
+
+
+        public ApplicationManager(ManualResetEvent _main_event = null)
         {
+            main_event = _main_event;
             clients = new HashSet<string>();
             current_waiting_count = 0;
             current_addresses = 0;
@@ -38,19 +46,39 @@ namespace Email_app
             events_to_delete = new List<ManualResetEvent>();
             updated = false;
             waiting_queue = new Queue<string>();
+            service = new Startup();
+            jokesFactory = new DadJokeGenerator(service.GetDadJokeClientObject());
+            sender = new MailgunEmailSender(service.GetMailClientObject(), service.GetMailConfigSection());
+            input_emails = new ConcurrentQueue<string>();
+        }
+
+        public void insert_email(string email)
+        {
+            input_emails.Enqueue(email);
+        }
+        public string GetError()
+        {
+            return sender.GetError();
         }
 
         public void begin() {
-            Startup service = new Startup();
-            DadJokeGenerator jokesFactory = new DadJokeGenerator(service.GetDadJokeClientObject());
-            MailgunEmailSender sender = new MailgunEmailSender(service.GetMailClientObject(), service.GetMailConfigSection());
-            string option = "Console";
-            while (mainLoop(ref service, ref jokesFactory, ref sender, ref option)) { }
-            WaitAll();
 
+            string email;
+            while (true)
+            {     
+                while (!input_emails.TryDequeue(out email)) {
+                    //No Emails in the queue, Go to sleep for 100 milliseconds.
+                    //When the thread is wakes up it will send jokes to all the emails in the queue.
+                    Thread.Sleep(100);
+                }
+                if (!handle_email(email)) { break; }
+
+            }
+            WaitAll();
+            main_event.Set();
         }
 
-        private void serve(string email,ref DadJokeGenerator jokesFactory, ref MailgunEmailSender sender)
+        private int serve(string email)
         {
             try
             {
@@ -64,20 +92,21 @@ namespace Email_app
                 if (joke == null)
                 {
                     waiting_queue.Enqueue(email);
-                    return;
+                    return 0;
                 }
                 MailInfo mail_info = new MailInfo { To = email, Subject = "Your Daddy joke, have a fun!", Body = joke.Joke };
                 sender.SendMail(mail_info, ref events);
-                Console.WriteLine("Your joke is on the way!");
-
+                return 1;
             }
             catch (FormatException)
             {
-                Console.WriteLine(email + " isn't a valid Email address.");
+                sender.InsertError(email + " isn't a valid Email address.");
+                return 0;
             }
 
         }
-        public bool mainLoop(ref Startup service, ref DadJokeGenerator jokesFactory, ref MailgunEmailSender sender, ref string option)
+
+        private bool handle_email(string _email)
         {
             string Email = "";
             //If ``updated = true`` then The joke factory produced more jokes.
@@ -88,7 +117,7 @@ namespace Email_app
                 while (pending_emails > 0)
                 {
                     Email = waiting_queue.Dequeue();
-                    serve(Email, ref jokesFactory, ref sender);
+                    serve(Email);
                     if (!waiting_queue.Contains(Email))
                     {
                         current_waiting_count -= 1;
@@ -97,7 +126,7 @@ namespace Email_app
                 }
                 updated = false;
             }
-   
+
             // If this case is true, we lack jokes, and as a result, we will ask for more jokes.
             if (current_waiting_count > max_waiting_emails ||
                 (current_addresses <= max_waiting_emails && sends_count > jokes_count) ||
@@ -109,30 +138,15 @@ namespace Email_app
                 WaitAll();
             }
 
-            Email = get_email_address(option);
+            Email = _email;
 
             if (Email == "exit")
             {
                 return false;
             }
-            serve(Email, ref jokesFactory, ref sender);
-            sends_count += 1;
+
+            sends_count += serve(Email);
             return true;
-        }
-
-        private string get_email_address(string option)
-        {
-            switch (option)
-            {
-                case "Testing":
-                    return email_for_testing;
-                case "Console":
-                    Console.WriteLine("Enter an Email (for quit type: exit):");
-                    return Console.ReadLine().Trim();
-
-            }
-            return "";
-
         }
 
         private void WaitAll()
@@ -157,22 +171,17 @@ namespace Email_app
                 events_to_delete.Clear();
             }
 
-
-
         }
+
+
         //======================================UnitTesting============================================================================
 
         public void begin_test(List<string> Email_list, int n)
         {
-            Startup service = new Startup();
-            DadJokeGenerator jokesFactory = new DadJokeGenerator(service.GetDadJokeClientObject());
-            MailgunEmailSender sender = new MailgunEmailSender(service.GetMailClientObject(), service.GetMailConfigSection());
-            string option = "Testing";
             for (int i = 0; i < n; i++)
             {
                 foreach (string email in Email_list) {
-                    this.email_for_testing = email;
-                    mainLoop(ref service, ref jokesFactory, ref sender, ref option);
+                    handle_email(email);
                 }
             }
             WaitAll();

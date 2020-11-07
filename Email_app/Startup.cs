@@ -23,14 +23,14 @@ namespace Email_app
             {
                 Base = "https://api.eu.mailgun.net",
                 From = "Console.App@viaMailgun.com",
-                MailgunKey = "APi-key",
+                MailgunKey = "API-KEY",
                 Domain = "mg.brash.io"
 
             };
             this.jokeConfigSection = new JokeConfigSection
             {
                 Base = "https://icanhazdadjoke.com/",
-                UserAgent = "ConsoleApp (tmankita@gmail.com)",
+                UserAgent = "ConsoleApp (https://github.com/tmankita/Email-Application)",
                 Accept = "application/json"
             };
 

@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{C4157604-2132-47B1-8987-0651AA642C0D}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Email_app/Startup.cs">
     <Files>
-      <File FileName="UnitTest/UnitTest1.cs" Line="14" Column="53" />
-      <File FileName="Email_app/ApplicationManager.cs" Line="144" Column="24" />
-      <File FileName="Email_app/DadJokeClasses/DadJokeGenerator.cs" Line="44" Column="24" />
-      <File FileName="Email_app/Startup.cs" Line="26" Column="31" />
+      <File FileName="UnitTest/UnitTest1.cs" Line="46" Column="57" />
+      <File FileName="Email_app/ApplicationManager.cs" Line="85" Column="1" />
+      <File FileName="Email_app/Program.cs" Line="25" Column="1" />
+      <File FileName="Email_app/EmailClasses/MailgunEmailSender.cs" Line="68" Column="1" />
+      <File FileName="Email_app/Startup.cs" Line="26" Column="38" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
